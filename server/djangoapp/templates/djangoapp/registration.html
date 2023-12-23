@@ -6,6 +6,17 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
     <body>
-    <!--Add a registration form here -->
+        <form method="POST">
+            {% csrf_token %}
+            <label for="username">Username</label>
+            <input type="text" placeholder="Username" name="username" id="username">
+            <label for="first_name">First Name</label>
+            <input type="text" placeholder="First Name" name="firstname" id="firstname">
+            <label for="last_name">Last Name</label>
+            <input type="text" placeholder="Last Name" name="lastname" id="lastname">
+            <label for="password">Password</label>
+            <input type="password" placeholder="Password" name="psw" id="psw">
+            <input type="submit" class="nav-link" value="Sign up" href="https://ackerm17-8000.theiadockernext-0-labs-prod-theiak8s-4-tor01.proxy.cognitiveclass.ai/djangoapp/signup"></input>
+        </form
     </body>
 </html>

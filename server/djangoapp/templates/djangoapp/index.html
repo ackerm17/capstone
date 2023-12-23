@@ -33,14 +33,32 @@
               <li class="nav-item">
                 <a class="nav-link" href="https://ackerm17-8000.theiadockernext-0-labs-prod-theiak8s-4-tor01.proxy.cognitiveclass.ai/djangoapp/contact">Contact us</a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+              {% if user.is_authenticated %}
+              <li>
+                <a class="nav-item" href="#">{{user.username}}</a>
               </li>
+              <li>
+                <a class="nav-link" href="https://ackerm17-8000.theiadockernext-0-labs-prod-theiak8s-4-tor01.proxy.cognitiveclass.ai/djangoapp/logout">Sign out</a>
+              </li>
+              {% else %}
+              <form class = "navbar-nav" method="POST">
+                {% csrf_token %}
+                <li class="nav-item">
+                    <input type="text" placeholder="Username" name="username" id="username">
+                </li>
+                <li class="nav-item">
+                    <input type="password" placeholder="Password" name="psw" id="psw">
+                </li>
+                <li class="nav-item">
+                    <input type="submit" class="nav-link" value="Login" href="https://ackerm17-8000.theiadockernext-0-labs-prod-theiak8s-4-tor01.proxy.cognitiveclass.ai/djangoapp/login"></input>
+                </li>
+                </form
+                <li class="nav-item">
+                    <a class="nav-link" href="https://ackerm17-8000.theiadockernext-0-labs-prod-theiak8s-4-tor01.proxy.cognitiveclass.ai/djangoapp/signup">Sign up</a>
+                </li>
+            {% endif %}
             </ul>
-            <form class="d-flex" role="search">
-              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-              <button class="btn btn-outline-success" type="submit">Search</button>
-            </form>
+            
           </div>
         </div>
       </nav>
