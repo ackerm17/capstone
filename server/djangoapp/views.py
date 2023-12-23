@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth.models import User
 from django.shortcuts import get_object_or_404, render, redirect
+from django.urls import reverse
 # from .models import related models
 # from .restapis import related methods
 from django.contrib.auth import login, logout, authenticate
@@ -36,19 +37,22 @@ def login_request(request):
     # Handles POST request
     if request.method == "POST":
         # Get username and password from request.POST dictionary
-        username = request.POST.get['username']
-        password = request.POST.get['psw']
+        username = request.POST['username']
+        password = request.POST['psw']
         # Try to check if provide credential can be authenticated
         user = authenticate(username=username, password=password)
         if user is not None:
             # If user is valid, call login method to login current user
             login(request, user)
-            return redirect('')
+            print("user should be logged in")
+            return redirect('djangoapp:index')
         else:
             # If not, return to login page again
-            return redirect('')
+            print("user in None")
+            return redirect('djangoapp:index')
     else:
-        return redirect('')
+        print("method is not post")
+        return redirect('djangoapp:index')
 
 
 
@@ -59,7 +63,7 @@ def logout_request(request):
     # Logout user in the request
     logout(request)
     # Redirect user back to course list view
-    return redirect('')
+    return redirect('djangoapp:index')
 
 # Create a `registration_request` view to handle sign up request
 def registration_request(request):
@@ -87,9 +91,9 @@ def registration_request(request):
             # Create user in auth_user table
             user = User.objects.create_user(username=username, first_name=first_name, last_name=last_name,
                                             password=password)
-            # Login the user and redirect to course list page
+            # Login the user and return redirect(reverse('about'))age
             login(request, user)
-            return redirect('')
+            return redirect('djangoapp:index')
         else:
             return render(request, 'djangoapp/registration.html', context)
 
@@ -98,6 +102,7 @@ def get_dealerships(request):
     context = {}
     if request.method == "GET":
         return render(request, 'djangoapp/index.html', context)
+    
 
 
 # Create a `get_dealer_details` view to render the reviews of a dealer
