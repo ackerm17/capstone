@@ -86,8 +86,11 @@ DATABASES = {
     }
 }
 
+export IAM_API_KEY="jZTg8y_STLzKig6sMlzN7GNtsXEoFXB28IVThH-vaMpj"
 
-# Password validation
+export COUCH_URL="https://88518cbe-b195-460a-af50-5a2e58527976-bluemix.cloudantnosqldb.appdomain.cloud"
+
+#  Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
