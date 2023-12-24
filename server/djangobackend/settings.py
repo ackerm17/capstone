@@ -22,8 +22,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'ao5z(o(z@cvzodm99d32jkxa5e8a1!q_4sqss5-a%n6tg$#h$+'
 
-CSRF_TRUSTED_ORIGINS=['https://ackerm17-8000.theiadockernext-0-labs-prod-theiak8s-4-tor01.proxy.cognitiveclass.ai']
-
+ALLOWED_ORIGINS = ['http://*', 'https://*', 'https://ackerm17-8000.theiadockernext-1-labs-prod-theiak8s-4-tor01.proxy.cognitiveclass.ai']
+CSRF_TRUSTED_ORIGINS = ALLOWED_ORIGINS.copy()
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
@@ -79,16 +79,26 @@ WSGI_APPLICATION = 'djangobackend.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'postgres',
+        'USER': 'postgres',
+        'PASSWORD': 'MjI4ODAtYWNrZXJt',
+        'HOST': 'localhost',
+        'PORT': '5432',
     }
 }
 
-export IAM_API_KEY="jZTg8y_STLzKig6sMlzN7GNtsXEoFXB28IVThH-vaMpj"
+# export IAM_API_KEY="jZTg8y_STLzKig6sMlzN7GNtsXEoFXB28IVThH-vaMpj"
 
-export COUCH_URL="https://88518cbe-b195-460a-af50-5a2e58527976-bluemix.cloudantnosqldb.appdomain.cloud"
+# export COUCH_URL="https://88518cbe-b195-460a-af50-5a2e58527976-bluemix.cloudantnosqldb.appdomain.cloud"
 
 #  Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
